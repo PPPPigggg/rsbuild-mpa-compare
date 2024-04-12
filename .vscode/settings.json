@@ -1,0 +1,24 @@
+{
+  "explorer.fileNesting.enabled": true,
+  "explorer.fileNesting.expand": false,
+  "explorer.fileNesting.patterns": {
+    "*.ts": "$(capture).test.ts, $(capture).test.tsx",
+    "*.tsx": "$(capture).test.ts, $(capture).test.tsx",
+    "*.env": "$(capture).env.*",
+    "README.md": "*.md",
+    "package.json": "package-lock.json,pnpm-lock.yaml,pnpm-workspace.yaml,LICENSE,.gitattributes,.gitpod.yml,CNAME,.npmrc,.browserslistrc",
+    ".eslintrc.*": ".eslintignore,eslint.*",
+    "rsbuild.config.*": "babel.config.*,postcss.config.*,config.codekit3",
+    ".stylelintrc.*": ".stylelintignore,stylelint.*",
+    "tsconfig.json": "tsconfig.*, jsconfig.*",
+    ".prettierrc.*": ".prettierignore,prettier.*"
+  },
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.stylelint": "explicit"
+  },
+  "stylelint.validate": ["css", "scss", "vue", "html"],
+  "eslint.validate": ["typescript", "vue", "html", "json"],
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "commentTranslate.multiLineMerge": false
+}

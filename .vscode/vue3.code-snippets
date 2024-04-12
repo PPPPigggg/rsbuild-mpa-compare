@@ -1,0 +1,16 @@
+{
+  "vue3 + pug + scss": {
+    "scope": "vue",
+    "prefix": "v3ps",
+    "body": [
+      "<template lang='pug'>",
+      "</template>\n",
+      "<script setup lang='ts'>",
+      "</script>\n",
+      "<style lang='scss' scoped>\n",
+      "</style>",
+      "$2"
+    ],
+    "description": "Vue3.2+"
+  }
+}
