@@ -9,6 +9,7 @@
     "build:webpack": "cross-env NODE_ENV=production  webpack -c webpack.config.js"
   },
   "dependencies": {
+    "@rspack/core": "^0.6.1",
     "@vant/area-data": "^1.5.1",
     "@vant/use": "^1.6.0",
     "address-smart-parse": "^1.0.0",
@@ -34,12 +35,12 @@
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@prettier/plugin-pug": "^3.0.0",
-    "@rsbuild/core": "^0.5.9",
-    "@rsbuild/plugin-image-compress": "^0.5.9",
-    "@rsbuild/plugin-pug": "^0.5.9",
-    "@rsbuild/plugin-rem": "^0.5.9",
-    "@rsbuild/plugin-vue": "^0.5.9",
-    "@rsbuild/plugin-vue-jsx": "^0.5.9",
+    "@rsbuild/core": "^0.6.1",
+    "@rsbuild/plugin-image-compress": "^0.6.0",
+    "@rsbuild/plugin-pug": "^0.6.0",
+    "@rsbuild/plugin-rem": "^0.6.0",
+    "@rsbuild/plugin-vue": "^0.6.0",
+    "@rsbuild/plugin-vue-jsx": "^0.6.0",
     "@rushstack/eslint-patch": "^1.10.1",
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "~20.8.10",

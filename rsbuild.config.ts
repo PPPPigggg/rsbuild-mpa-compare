@@ -6,11 +6,27 @@ import { pluginVue } from "@rsbuild/plugin-vue"
 import { pluginVueJsx } from "@rsbuild/plugin-vue-jsx"
 import { pluginPug } from "@rsbuild/plugin-pug"
 import { pluginRem } from "@rsbuild/plugin-rem"
+import { rspack } from "@rspack/core"
 
 const { parsed } = loadEnv({
   prefixes: ["VUE_APP_"],
 })
 const isBuild = process.env.NODE_ENV === "production"
+
+// 通过 html-webpack-plugin 生成的 HTML 集合
+const HTMLPlugins: any[] = []
+// 生成多页面的集合
+for (const [pageName, page] of Object.entries(pages)) {
+  const htmlPlugin = new rspack.HtmlRspackPlugin({
+    template: "./public/index.html",
+    filename: `${pageName}.html`,
+    title: (page as any).title,
+    chunks: [pageName, "vendors", "common", "runtime"],
+    favicon: "./public/favicon.ico",
+    minify: true,
+  })
+  HTMLPlugins.push(htmlPlugin)
+}
 
 export default defineConfig({
   /* 入口文件 */
@@ -26,25 +42,29 @@ export default defineConfig({
   },
 
   tools: {
-    htmlPlugin: (config, { entryName }) => {
-      config.template = "./public/index.html"
-      config.filename = `${entryName}.html`
-      config.title = pages[entryName].title
-      config.chunks = [entryName, "vendors", "common", "runtime"]
-      config.favicon = "./public/favicon.ico"
-      config.minify = {
-        removeAttributeQuotes: true,
-        removeComments: true,
-        removeEmptyAttributes: true,
-        minifyCSS: false,
-        minifyJS: false,
-      }
-
-      if (typeof config.minify === "object") {
-        config.minify.minifyJS = false
-        config.minify.minifyCSS = false
-      }
+    rspack: {
+      plugins: [...HTMLPlugins],
     },
+    htmlPlugin: false,
+    // htmlPlugin: (config, { entryName }) => {
+    //   config.template = "./public/index.html"
+    //   config.filename = `${entryName}.html`
+    //   config.title = pages[entryName].title
+    //   config.chunks = [entryName, "vendors", "common", "runtime"]
+    //   config.favicon = "./public/favicon.ico"
+    //   config.minify = {
+    //     removeAttributeQuotes: true,
+    //     removeComments: true,
+    //     removeEmptyAttributes: true,
+    //     minifyCSS: false,
+    //     minifyJS: false,
+    //   }
+
+    //   if (typeof config.minify === "object") {
+    //     config.minify.minifyJS = false
+    //     config.minify.minifyCSS = false
+    //   }
+    // },
   },
   plugins: [
     pluginVue(),

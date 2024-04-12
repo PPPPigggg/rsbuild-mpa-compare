@@ -12,7 +12,6 @@ header
   .wrapper
     HelloWorld(@click="showMsg", msg="You did it!")
 main
-  TheWelcome
 </template>
 
 <style scoped>
